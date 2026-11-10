@@ -1168,7 +1168,7 @@
           </div>
           <span class="contact__link-text">WhatsApp — (79) 99997-6339</span>
         </a>
-        <a href="https://instagram.com/arquiteto.danielprazeres" class="contact__link" target="_blank">
+        <a href="https://www.instagram.com/arquiteto.danielprazeres/" class="contact__link" target="_blank" rel="noopener noreferrer">
           <div class="contact__link-icon">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
           </div>
@@ -1196,7 +1196,7 @@
   <div class="container footer__inner">
     <p class="footer__copy">© 2026 Daniel Prazeres Arquitetura. Todos os direitos reservados. <a href="/politica-de-privacidade/" style="margin-left:.8rem;text-decoration:underline;color:inherit">Política de privacidade</a></p>
     <div class="footer__social">
-      <a href="https://instagram.com/arquiteto.danielprazeres" target="_blank" aria-label="Instagram">
+      <a href="https://www.instagram.com/arquiteto.danielprazeres/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
       </a>
       <a href="https://wa.me/5579999976339" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -1206,7 +1206,7 @@
   </div>
 </footer>
 
-<div class="contact-float"><a class="contact-float__btn" href="https://ig.me/m/arquiteto.danielprazeres" target="_blank" aria-label="Mensagem no Instagram Direct"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="5"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a><a class="contact-float__btn" href="https://wa.me/5579999976339" target="_blank" aria-label="Conversar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+<div class="contact-float"><a class="contact-float__btn" href="https://www.instagram.com/arquiteto.danielprazeres/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="5"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a><a class="contact-float__btn" href="https://wa.me/5579999976339" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
 
 </div><script>
   var nav = document.getElementById('nav');
@@ -1359,7 +1359,7 @@
   }
   function urlCanal(msg) {
     var t = encodeURIComponent(msg);
-    if (estado.canal === 'instagram') return 'https://ig.me/m/' + INSTA;
+    if (estado.canal === 'instagram') return 'https://www.instagram.com/' + INSTA + '/';
     if (estado.canal === 'email') return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(ASSUNTOS[estado.assunto].rotulo) + '&body=' + t;
     /* celular: abre o aplicativo direto; computador: vai direto ao WhatsApp Web (sem a página intermediária do wa.me) */
     return mobile ? 'whatsapp://send?phone=' + FONE + '&text=' + t : 'https://web.whatsapp.com/send?phone=' + FONE + '&text=' + t;
@@ -1456,26 +1456,6 @@
     mostrarObrigado(false);
   });
   box.querySelector('[data-acao="continuar"]').addEventListener('click', function () { irParaCanal(true); });
-
-  /* Qualquer botão de contato (WhatsApp, Instagram, e-mail) abre este atendimento */
-  var seletor = 'a[href*="wa.me/' + FONE + '"], a[href*="instagram.com/' + INSTA + '"], a[href*="ig.me/m/' + INSTA + '"], a[href^="mailto:"]';
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest ? e.target.closest(seletor) : null;
-    if (!a || box.contains(a)) return;
-    e.preventDefault();
-    var h = a.getAttribute('href');
-    estado.canal = /instagram|ig\.me/.test(h) ? 'instagram' : /^mailto:/.test(h) ? 'email' : 'whatsapp';
-    estado.origem = a.className ? String(a.className).split(' ')[0] : 'link';
-    estado.assunto = null;
-    mostrar(1);
-    abrir(true);
-    evento('lead_painel_aberto', {});
-    var pre = a.getAttribute('data-assunto');
-    var alvo = pre ? box.querySelector('[data-assunto="' + pre + '"]') : null;
-    if (alvo) { alvo.click(); return; }
-    var primeiro = box.querySelector('[data-assunto]');
-    if (primeiro) primeiro.focus();
-  }, true);
 
   /* Balão automático: só perto do fim da página, uma vez por sessão (clique nos ícones abre a qualquer momento) */
   var fechado = false;
